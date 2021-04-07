@@ -2,8 +2,27 @@ import React from 'react';
 import { GithubContext } from '../context/context';
 import styled from 'styled-components';
 import { MdBusiness, MdLocationOn, MdLink } from 'react-icons/md';
+import { useSelector } from "react-redux";
 const Card = () => {
-  return <h2>card component</h2>;
+  const oUseInfo = useSelector(({ User }) => User);
+  const { avatar_url, name, company, blog, bio, twitter_username, html_url, location } = oUseInfo;
+  return <Wrapper>
+    <header>
+      <img src={avatar_url} alt={name} />
+      <div>
+        <h4>{name}</h4>
+        <p>@{twitter_username || 'NA'}</p>
+      </div>
+      <a href={html_url}>follow</a>
+    </header>
+    <p className="bio">{bio}</p>
+    <div className="links">
+      <p> <MdBusiness /> {company}</p>
+      <p> <MdLocationOn /> {location}</p>
+      <a href={`https://${blog}`}> <MdLink />{blog}</a>
+    </div>
+
+  </Wrapper>;
 };
 const Wrapper = styled.article`
   background: var(--clr-white);
