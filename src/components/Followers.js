@@ -7,9 +7,9 @@ const Followers = () => {
 
   return <Wrapper>
     <div className='followers'>
-      {aFollowersInfo.map((follower) => {
+      {aFollowersInfo.map((follower, index) => {
         const { avatar_url, html_url, login } = follower;
-        return <article className="article">
+        return <article key={index} className="article">
           <img src={avatar_url} alt={login} />
           <div>
             <h4>{login}</h4>
